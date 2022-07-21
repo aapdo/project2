@@ -1,21 +1,17 @@
-package main;
+package Main;
 
-import AcademicManagement.DBconnector;
 import AcademicManagement.Management;
 
-import java.io.PrintStream;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main(String[] args) throws SQLException {
         Management management = new Management();
-        //management.insert_student(4, "jy", "male", "computer science", 1, 4.00f, "재학", ""); suc
-        management.insert_professor(202, "jy", "computer science", "",  "재직", "");
+        management.insert_student(3, "jy", "male", "computer science", 1, 4.00f, "재학", "");
+        //management.insert_professor(202, "jy", "computer science", "",  "재직", "");
 
 
-
+/*
         Scanner in = new Scanner(System.in);
         PrintStream out = System.out;
         int input_num = 0;
@@ -52,6 +48,8 @@ public class main {
                     break;
             }
         }
+
+ */
     }
 
 }

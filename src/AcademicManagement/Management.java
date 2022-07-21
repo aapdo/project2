@@ -2,29 +2,33 @@ package AcademicManagement;
 
 import java.sql.*;
 
-public class Management {
+public class Management{
 
-    //public PreparedStatement ps;
-    public String sql;
-    public DBconnector dbConnector = new DBconnector();
-
-    public PreparedStatement ps;
-    public Connection dbConn;
+    //public DBconnector dbConnector = new DBconnector();
+    //public Connection dbConn;
     InsertQuery insert_query = new InsertQuery();
+    public Connection dbConn;
 
-    public void insert_student(int id, String name, String gender, String major, int grade, float avg_grade, String state, String extra) throws SQLException{
-
-        dbConn = dbConnector.getConnection();
+    public void test(int id, String name, String gender, String major, int grade, float avg_grade, String state, String extra) throws SQLException{
+        dbConn = DBconnector.getConnection();
         insert_query.insert_student(dbConn, id, name, gender, major, grade, avg_grade, state, extra);
-        dbConnector.close();
+        DBconnector.close();
     }
-    public void insert_professor(int id, String name, String major, String grade, String state, String extra ){
+    public void insert_student(int id, String name, String gender, String major, int grade, float avg_grade, String state, String extra) throws SQLException{
+        dbConn = DBconnector.getConnection();
+        insert_query.insert_student(dbConn, id, name, gender, major, grade, avg_grade, state, extra);
+        DBconnector.close();
+    }
 
+    /*
+    public void insert_professor(int id, String name, String major, String grade, String state, String extra ){
         dbConn = dbConnector.getConnection();
         insert_query.insert_professor(dbConn, id, name, major, grade, state, extra);
         dbConnector.close();
 
     }
+    */
+
 
     public Management() throws SQLException {
     }

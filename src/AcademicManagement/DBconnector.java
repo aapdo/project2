@@ -23,12 +23,6 @@ public class DBconnector {
                 String userName = "root";
                 String password = "root";
 
-                // [211.238.142.150] 는 오라클 서버의 IP 주소를 기재하는 부분
-                // [1521] 은 오라클 port number
-                // [xe]는 오라클 sid(express edition 은 xe)
-
-                //Class.forName("oracle.jdbc.driver.OracleDriver");
-
                 dbConn = DriverManager.getConnection(url, userName, password);
                 //-- OracleDriver 클래스에 대한 객체 생성
                 //   드라이버 로딩 -> JVM에 전달
