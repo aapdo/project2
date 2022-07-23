@@ -1,20 +1,26 @@
 package Main;
 
 import AcademicManagement.Management;
+import AcademicManagement.StudentsVO;
 
+import java.io.PrintStream;
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
         Management management = new Management();
-        management.insert_student(3, "jy", "male", "computer science", 1, 4.00f, "재학", "");
+        //management.insert_student(3, "jy", "male", "computer science", 1, 4.00f, "재학", "");
         //management.insert_professor(202, "jy", "computer science", "",  "재직", "");
 
 
-/*
         Scanner in = new Scanner(System.in);
         PrintStream out = System.out;
         int input_num = 0;
+        StudentsVO studentsVO = new StudentsVO();
+
 
 
         while(true) {
@@ -37,19 +43,37 @@ public class Main {
             }
             switch (input_num) {
                 case 1:
-                    out.print("학번 :");
+                    out.print("학번: ");
+                    studentsVO.setId(in.nextInt());
                     in.nextLine();
-                    management.insert_student(4, "jy", "male", "computer science", 1, 4.00f, "재학", ""); //suc
+                    out.print("이름: ");
+                    studentsVO.setName(in.nextLine());
+                    out.print("성별: ");
+                    studentsVO.setGender(in.nextLine());
+                    out.print("전공: ");
+                    studentsVO.setMajor(in.nextLine());
+                    out.print("학년: ");
+                    studentsVO.setGrade(in.nextInt());
+                    out.print("평균학점: ");
+                    studentsVO.setAvg_grade(in.nextFloat());
+                    in.nextLine();
+                    out.print("상태: ");
+                    studentsVO.setState(in.nextLine());
+                    out.print("기타: ");
+                    studentsVO.setExtra(in.nextLine());
+
+                    management.insert_student(studentsVO);
+                    out.println("추가 완료!");
                     break;
                 case 2:
-                    out.println("2");
+
+                    out.println("추가 완료!");
                     break;
                 default:
                     break;
             }
         }
 
- */
     }
 
 }

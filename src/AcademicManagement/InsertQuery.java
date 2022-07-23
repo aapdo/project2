@@ -48,5 +48,25 @@ public class InsertQuery {
         }
         System.out.println("insert!");
     }
+    public void insert_student(Connection dbConn, StudentsVO studentsVO ){
+        sql= "insert into students(id, name, gender, major, grade, avg_grade, state, extra) values(?,?,?,?,?,?,?,?)";
+        try {
+            ps = dbConn.prepareStatement(sql);
+            ps.setInt(1, studentsVO.getId());
+            ps.setString(2, studentsVO.getName());
+            ps.setString(3, studentsVO.getGender());
+            ps.setString(4, studentsVO.getMajor());
+            ps.setInt(5, studentsVO.getGrade());
+            ps.setFloat(6, studentsVO.getAvg_grade());
+            ps.setString(7, studentsVO.getState());
+            ps.setString(8, studentsVO.getExtra());
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("insert!");
+    }
 
 }

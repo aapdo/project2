@@ -9,9 +9,9 @@ public class Management{
     InsertQuery insert_query = new InsertQuery();
     public Connection dbConn;
 
-    public void test(int id, String name, String gender, String major, int grade, float avg_grade, String state, String extra) throws SQLException{
+    public void insert_student(StudentsVO studentsVO) throws SQLException{
         dbConn = DBconnector.getConnection();
-        insert_query.insert_student(dbConn, id, name, gender, major, grade, avg_grade, state, extra);
+        insert_query.insert_student(dbConn, studentsVO);
         DBconnector.close();
     }
     public void insert_student(int id, String name, String gender, String major, int grade, float avg_grade, String state, String extra) throws SQLException{
@@ -19,7 +19,13 @@ public class Management{
         insert_query.insert_student(dbConn, id, name, gender, major, grade, avg_grade, state, extra);
         DBconnector.close();
     }
-
+    /* test
+    public void test(StudentsVO studentsVO) throws SQLException{
+        dbConn = DBconnector.getConnection();
+        insert_query.test(dbConn, studentsVO);
+        DBconnector.close();
+    }
+     */
     /*
     public void insert_professor(int id, String name, String major, String grade, String state, String extra ){
         dbConn = dbConnector.getConnection();
