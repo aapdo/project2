@@ -1,4 +1,4 @@
-package AcademicManagement;
+package AcademicManagement.VO;
 
 public class StudentsVO {
     private int id;

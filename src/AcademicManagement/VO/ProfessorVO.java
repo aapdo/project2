@@ -1,6 +1,6 @@
-package AcademicManagement;
+package AcademicManagement.VO;
 
-public class professorVO {
+public class ProfessorVO {
     private int id;
     private String name;
     private String major;
@@ -8,7 +8,7 @@ public class professorVO {
     private String state;
     private String extra;
 
-    public int id() {
+    public int getId() {
         return id;
     }
     public void setId(int id) {

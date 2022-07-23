@@ -1,5 +1,13 @@
 package AcademicManagement;
 
+import AcademicManagement.Query.InsertQuery;
+import AcademicManagement.Query.SelectQuery;
+import AcademicManagement.Query.UpdateQuery;
+import AcademicManagement.VO.Class_listVO;
+import AcademicManagement.VO.GradeVO;
+import AcademicManagement.VO.ProfessorVO;
+import AcademicManagement.VO.StudentsVO;
+
 import java.sql.*;
 
 public class Management{
@@ -7,8 +15,11 @@ public class Management{
     //public DBconnector dbConnector = new DBconnector();
     //public Connection dbConn;
     InsertQuery insert_query = new InsertQuery();
+    SelectQuery select_query = new SelectQuery();
+    UpdateQuery update_query = new UpdateQuery();
     public Connection dbConn;
 
+    /* insert into를 이용하여 DB에 정보 저장 */
     public void insert_student(StudentsVO studentsVO) throws SQLException{
         dbConn = DBconnector.getConnection();
         insert_query.insert_student(dbConn, studentsVO);
@@ -19,6 +30,31 @@ public class Management{
         insert_query.insert_student(dbConn, id, name, gender, major, grade, avg_grade, state, extra);
         DBconnector.close();
     }
+    public void insert_professor(ProfessorVO professorVO){
+        dbConn = DBconnector.getConnection();
+        insert_query.insert_professor(dbConn, professorVO);
+        DBconnector.close();
+    }
+    public void insert_classList(Class_listVO class_listVO){
+        dbConn = DBconnector.getConnection();
+        insert_query.insert_classList(dbConn, class_listVO);
+        DBconnector.close();
+    }
+    public void insert_grade(GradeVO gradeVO){
+        dbConn = DBconnector.getConnection();
+        insert_query.insert_grade(dbConn, gradeVO);
+        DBconnector.close();
+    }
+    /* insert into를 이용하여 DB에 정보 저장 */
+
+    /* update를 이용하여 DB에 정보 수정 */
+    public void update_grade(GradeVO gradeVO){
+        dbConn = DBconnector.getConnection();
+        update_query.update_grade(dbConn, gradeVO);
+        DBconnector.close();
+    }
+
+
     /* test
     public void test(StudentsVO studentsVO) throws SQLException{
         dbConn = DBconnector.getConnection();
@@ -26,15 +62,6 @@ public class Management{
         DBconnector.close();
     }
      */
-    /*
-    public void insert_professor(int id, String name, String major, String grade, String state, String extra ){
-        dbConn = dbConnector.getConnection();
-        insert_query.insert_professor(dbConn, id, name, major, grade, state, extra);
-        dbConnector.close();
-
-    }
-    */
-
 
     public Management() throws SQLException {
     }

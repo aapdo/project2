@@ -1,6 +1,6 @@
-package AcademicManagement;
+package AcademicManagement.VO;
 
-public class class_listVO {
+public class Class_listVO {
     private int id;
     private String name;
     private String date;

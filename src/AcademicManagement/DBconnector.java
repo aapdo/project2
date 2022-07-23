@@ -18,7 +18,6 @@ public class DBconnector {
         {
             try
             {
-
                 String url = "jdbc:mysql://localhost:3306/academic_management";
                 String userName = "root";
                 String password = "root";

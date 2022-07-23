@@ -1,6 +1,6 @@
-package AcademicManagement;
+package AcademicManagement.VO;
 
-public class sugangVO {
+public class SugangVO {
     private int id;
     private int class_id;
     private int professor_id;
