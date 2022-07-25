@@ -1,9 +1,6 @@
 package AcademicManagement.Query;
 
-import AcademicManagement.VO.Class_listVO;
-import AcademicManagement.VO.GradeVO;
-import AcademicManagement.VO.ProfessorVO;
-import AcademicManagement.VO.StudentsVO;
+import AcademicManagement.VO.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,7 +70,7 @@ public class InsertQuery {
         }
     }
     public void insert_classList(Connection dbConn, Class_listVO class_listVO){
-        sql= "insert into class_list(id, name, time, class_to, professor_id, extra) values(?,?,?,?,?,?)";
+        sql= "insert into class_list(id, name, time, class_to, professor_id, state, extra) values(?,?,?,?,?, '개강',?)";
         try {
             ps = dbConn.prepareStatement(sql);
             ps.setInt(1, class_listVO.getId());
@@ -103,6 +100,33 @@ public class InsertQuery {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void sugang_go(Connection dbConn, SugangVO sugangVO){
+        try {
+            sql = "insert into sugang (id, class_id, professor_id, student_id, state, extra) value " +
+                    "( ( select MAX(a.id) + 1 from sugang a) , ?, (select professor_id from class_list where id = ?), ?, '확정', '')";
+            ps = dbConn.prepareStatement(sql);
+            ps.setInt(1, sugangVO.getClass_id());
+            ps.setInt(2, sugangVO.getClass_id());
+            ps.setInt(3, sugangVO.getStudent_id());
+            ps.execute();
+            ps.close();
+
+            sql = "insert into grade (id, class_id, professor_id, student_id, grade, extra) value " +
+                    "( ( select MAX(a.id) + 1 from grade a) , ?, (select professor_id from class_list where id = ?), ?, 0.00, '')";
+
+            ps = dbConn.prepareStatement(sql);
+            ps.setInt(1, sugangVO.getClass_id());
+            ps.setInt(2, sugangVO.getClass_id());
+            ps.setInt(3, sugangVO.getStudent_id());
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 

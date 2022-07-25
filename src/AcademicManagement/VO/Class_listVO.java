@@ -5,7 +5,10 @@ public class Class_listVO {
     private String name;
     private String date;
     private int class_to;
+    private int sugang_to;
     private int professor_id;
+    private String professor_name;
+    private String state;
     private String extra;
 
     public int getId() {
@@ -48,6 +51,14 @@ public class Class_listVO {
         this.professor_id = professor_id;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public String getExtra() {
         return extra;
     }
@@ -56,15 +67,30 @@ public class Class_listVO {
         this.extra = extra;
     }
 
+    public String getProfessor_name() {
+        return professor_name;
+    }
+
+    public void setProfessor_name(String professor_name) {
+        this.professor_name = professor_name;
+    }
+
+    public int getSugang_to() {
+        return sugang_to;
+    }
+
+    public void setSugang_to(int sugang_to) {
+        this.sugang_to = sugang_to;
+    }
+
     @Override
     public String toString() {
-        return "class_listVO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", date='" + date + '\'' +
-                ", class_to=" + class_to +
-                ", professor_id=" + professor_id +
-                ", extra='" + extra + '\'' +
-                '}';
+        return  "강좌 번호: " + id +
+                ", 강좌명: '" + name + '\'' +
+                ", 시간: '" + date + '\'' +
+                ", 수강인원/정원: " + sugang_to +'/'+class_to+
+                ", 담당교수: " + professor_name +
+                ", 비고: '" + extra + '\''
+                ;
     }
 }

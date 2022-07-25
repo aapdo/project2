@@ -35,9 +35,6 @@ public class DBconnector {
                 //ps.setString(", name);
                 //ps.setString("male", gender);
                 //ps.setString("");
-
-                System.out.println("DB 연결 성공!");
-
             } catch(Exception e) // (ClassNotFoundException, SQLException)
             {
                 System.out.println(e.toString());
@@ -63,7 +60,6 @@ public class DBconnector {
                 // 닫혀 있는 상황이 맞는게 아니라면 -> 열려있다면
                 if (!dbConn.isClosed()) {
                     dbConn.close();
-                    System.out.println("DB 연결 종료 성공!");
                     //-- 연결 객체의 close() 메소드 호출을 통해 연결 종료
                 }
 

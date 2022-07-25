@@ -1,12 +1,10 @@
 package AcademicManagement;
 
+import AcademicManagement.Query.DeleteQuery;
 import AcademicManagement.Query.InsertQuery;
 import AcademicManagement.Query.SelectQuery;
 import AcademicManagement.Query.UpdateQuery;
-import AcademicManagement.VO.Class_listVO;
-import AcademicManagement.VO.GradeVO;
-import AcademicManagement.VO.ProfessorVO;
-import AcademicManagement.VO.StudentsVO;
+import AcademicManagement.VO.*;
 
 import java.sql.*;
 
@@ -17,7 +15,9 @@ public class Management{
     InsertQuery insert_query = new InsertQuery();
     SelectQuery select_query = new SelectQuery();
     UpdateQuery update_query = new UpdateQuery();
+    DeleteQuery delete_query = new DeleteQuery();
     public Connection dbConn;
+    public ResultSet rs;
 
     /* insert into를 이용하여 DB에 정보 저장 */
     public void insert_student(StudentsVO studentsVO) throws SQLException{
@@ -40,6 +40,12 @@ public class Management{
         insert_query.insert_classList(dbConn, class_listVO);
         DBconnector.close();
     }
+    public void insert_sugangGo(SugangVO sugangVO){
+        dbConn = DBconnector.getConnection();
+        insert_query.sugang_go(dbConn, sugangVO);
+        DBconnector.close();
+    }
+
     public void insert_grade(GradeVO gradeVO){
         dbConn = DBconnector.getConnection();
         insert_query.insert_grade(dbConn, gradeVO);
@@ -53,7 +59,69 @@ public class Management{
         update_query.update_grade(dbConn, gradeVO);
         DBconnector.close();
     }
+    public void update_studentState(StudentsVO studentsVO){
+        dbConn = DBconnector.getConnection();
+        update_query.update_studentState(dbConn, studentsVO);
+        DBconnector.close();
+    }
 
+    public void update_professorState(ProfessorVO professorVO){
+        dbConn = DBconnector.getConnection();
+        update_query.update_professorState(dbConn, professorVO);
+        DBconnector.close();
+    }
+    public void update_classClosed(Class_listVO class_listVO){
+        dbConn = DBconnector.getConnection();
+        update_query.update_classClosed(dbConn, class_listVO);
+        DBconnector.close();
+    }
+    public void update_avgGrade(StudentsVO studentsVO){
+        dbConn = DBconnector.getConnection();
+        update_query.update_avgGrade(dbConn, studentsVO);
+        DBconnector.close();
+    }
+
+    public ResultSet select_classList(){
+        dbConn = DBconnector.getConnection();
+        return select_query.select_classList(dbConn);
+    }
+    public ResultSet select_classProfessor(int professor_id){
+        dbConn = DBconnector.getConnection();
+        return select_query.select_classProfessor(dbConn, professor_id);
+    }
+    public ResultSet select_sugangTo(int class_id){
+        dbConn = DBconnector.getConnection();
+        return select_query.select_sugangTo(dbConn, class_id);
+    }
+    public ResultSet select_grade(int student_id){
+        dbConn = DBconnector.getConnection();
+        return select_query.select_grade(dbConn, student_id);
+    }
+
+
+    public void delete_sugang(SugangVO sugangVO){
+        dbConn = DBconnector.getConnection();
+        delete_query.delete_sugang(dbConn, sugangVO);
+        DBconnector.close();
+    }
+
+    public void closeDB(){
+        try {
+            if(SelectQuery.rs != null){
+                SelectQuery.rs.close();
+            }
+            if(SelectQuery.st != null){
+                SelectQuery.st.close();
+            }
+            if(SelectQuery.ps != null){
+                SelectQuery.ps.close();
+            }
+
+            DBconnector.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /* test
     public void test(StudentsVO studentsVO) throws SQLException{
